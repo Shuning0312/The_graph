@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MiroToken
+    network: mainnet
+    source:
+      address: "0x0168703872fa06741Ecaa9Dff7803168e83f7aE0"
+      abi: MiroToken
+      startBlock: 4579316
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+        - Approval
+        - Mint
+        - MintFinished
+        - OwnershipTransferred
+      abis:
+        - name: MiroToken
+          file: ./abis/MiroToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: MintFinished()
+          handler: handleMintFinished
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/miro-token.ts

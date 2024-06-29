@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "MiroToken": {
+      "address": "0x0168703872fa06741Ecaa9Dff7803168e83f7aE0",
+      "startBlock": 4579316
+    }
+  }
+}
